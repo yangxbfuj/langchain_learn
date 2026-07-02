@@ -1,0 +1,21 @@
+{
+  // 开启Ruff原生语言服务器（必须）
+  "ruff.nativeServer": "on",
+  // 设为Python/Notebook默认格式化器
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true
+  },
+  "[ipynb]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  // Notebook保存自动格式化
+  "notebook.formatOnSave.enabled": true,
+  // 保存自动修复lint、自动排序导入
+  "notebook.codeActionsOnSave": {
+    "notebook.source.fixAll": "explicit",
+    "notebook.source.organizeImports": "explicit"
+  },
+  // 开启Ruff预览格式化（对齐black风格）
+  "ruff.format.preview": true
+}

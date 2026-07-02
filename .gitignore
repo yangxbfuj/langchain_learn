@@ -10,3 +10,7 @@ wheels/
 .venv
 .env
 *.env
+
+# ruff
+.ruff_cache
+.ipynb_checkpoints
