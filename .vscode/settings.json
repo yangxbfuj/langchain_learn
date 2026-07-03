@@ -17,5 +17,18 @@
     "notebook.source.organizeImports": "explicit"
   },
   // 开启Ruff预览格式化（对齐black风格）
-  "ruff.format.preview": true
+  "ruff.format.preview": true,
+  // Windows
+  "terminal.integrated.env.windows": {
+      "PYTHONPATH": "${workspaceFolder}"
+  },
+  // Mac / Linux
+  "terminal.integrated.env.osx": {
+      "PYTHONPATH": "${workspaceFolder}"
+  },
+  "terminal.integrated.env.linux": {
+      "PYTHONPATH": "${workspaceFolder}"
+  },
+  // Jupyter专属设置，修复notebook根目录
+  "jupyter.notebookFileRoot": "${workspaceFolder}"
 }

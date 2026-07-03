@@ -1,0 +1,10 @@
+[tool.uv]
+# 虚拟环境存放目录
+venv-dir = ".venv"
+# 自动在运行时把 src 加入 PYTHONPATH（uv run 自动生效）
+python-path = ["."]
+
+[tool.uv.workspace]
+members = [
+    "practice2",
+]

@@ -7,6 +7,7 @@ requires-python = ">=3.13"
 dependencies = [
     "dashscope>=1.26.0",
     "dotenv>=0.9.9",
+    "fastmcp>=3.4.2",
     "httpx>=0.28.1",
     "ipykernel>=7.3.0",
     "jupyterlab>=4.6.1",
@@ -17,6 +18,7 @@ dependencies = [
     "mcp>=1.28.1",
     "pydantic>=2.13.4",
     "rich>=15.0.0",
+    "streamlit>=1.58.0",
 ]
 
 [tool.ruff]
@@ -29,7 +31,7 @@ exclude = [
 [tool.ruff.lint]
 select = ["E", "F", "I", "N"]
 # ipynb专属忽略规则（按需）
-per-file-ignores = { "*.ipynb" = ["T20"] }
+per-file-ignores = { "*.ipynb" = ["T20", "E402"] }
 
 [tool.ruff.format]
 # 双引号字符串
@@ -39,9 +41,3 @@ quote-style = "double"
 dev = [
     "ruff>=0.15.20",
 ]
-
-[tool.uv]
-# 虚拟环境存放目录
-venv-dir = ".venv"
-# 自动在运行时把 src 加入 PYTHONPATH（uv run 自动生效）
-python-path = ["."]
