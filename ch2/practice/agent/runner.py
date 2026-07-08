@@ -58,6 +58,30 @@ class AgentRunner:
         last = messages[-1] if messages else None
         return last.content if isinstance(last, AIMessage) else (str(last) if last is not None else "")
 
+    async def ainvoke(self, user_input: str) -> str:
+        """单轮调用：拼接历史 + 本轮输入 -> 调用 Agent -> 回写记忆 -> 返回文本"""
+        # 1) 拼接历史与当前输入（Messages 机制）
+        history: List = stringify_dialog(self.memory.get())
+        print(f"-----> Runner: History: {history}")
+        state = {"messages": history + [HumanMessage(content=user_input)]}
+        print(f"-----> Runner: State: {state}")
+
+        # 2) 调用 Agent（内部自动处理ReAct、工具、中间件）
+        new_state = await self.agent.ainvoke(state)
+        print("--------------------------------")
+        print(f"-----> Runner: New state: {new_state}")
+        print("--------------------------------")
+
+        # 3) 回写记忆为最新窗口
+        # 因为 messages 本身已经包含了之前的历史 + 这次的新增消息，所以这里是“整体替换”而不是“在旧列表末尾 append”。
+        messages = stringify_dialog(new_state.get("messages", []))
+        self.memory.clear()
+        self.memory.add(messages)
+
+        # 4) 返回本轮 AI 文本
+        last = messages[-1] if messages else None
+        return last.content if isinstance(last, AIMessage) else (str(last) if last is not None else "")
+
 
 def build_runner() -> AgentRunner:
     """
