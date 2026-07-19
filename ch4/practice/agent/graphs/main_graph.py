@@ -27,7 +27,7 @@ dotenv.load_dotenv()
 
 print(f"deepseek api {os.getenv('DEEPSEEK_API')}")
 
-llm = init_chat_model(
+_llm = init_chat_model(
     model="deepseek-v4-pro",
     api_key=os.getenv("DEEPSEEK_API"),
     base_url="https://api.deepseek.com/v1",
@@ -127,7 +127,7 @@ def aggregate_and_propose(state: ClaimState) -> Dict[str, Any]:
 
     prompt = SOLUTION_SYSTEM_PROMPT.strip() + "\n\n下面是本次理赔的综合信息，请基于这些信息给出推荐方案：\n" + user_msg
 
-    resp = llm.invoke(prompt)
+    resp = _llm.invoke(prompt)
     text = resp.content if hasattr(resp, "content") else str(resp)
 
     # 判断是否需要人工审批：高风险或高金额
@@ -224,7 +224,7 @@ def finalize_or_skip(state: ClaimState) -> Dict[str, Any]:
         + proposed_solution
     )
 
-    resp = llm.invoke(prompt)
+    resp = _llm.invoke(prompt)
     user_notice = resp.content if hasattr(resp, "content") else str(resp)
 
     logs = ["[finalize] 最终理赔方案已确认并生成用户说明。"]

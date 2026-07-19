@@ -1,5 +1,6 @@
 # agent/state.py
-from typing import Optional, List, Literal, TypedDict, Annotated
+from typing import Annotated, List, Literal, Optional, TypedDict
+
 
 def append_logs(existing: List[str], new: List[str]) -> List[str]:
     return (existing or []) + (new or [])
@@ -13,7 +14,7 @@ class ClaimState(TypedDict, total=False):
     user_id: str
     order_id: str
     order_amount: float
-    order_category: str   # 商品品类，如 "electronics" / "fragile" / "virtual" 等
+    order_category: str  # 商品品类，如 "electronics" / "fragile" / "virtual" 等
     damage_description: str
 
     # 风险评估用的 mock 统计数据

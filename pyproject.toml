@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "dashscope>=1.26.0",
+    "deepagents>=0.6.12",
     "dotenv>=0.9.9",
     "fastmcp>=3.4.2",
     "httpx>=0.28.1",
@@ -22,6 +23,7 @@ dependencies = [
     "pypdf>=6.14.2",
     "rich>=15.0.0",
     "streamlit>=1.58.0",
+    "tavily-python>=0.7.26",
     "wechatbot-sdk>=0.3.0",
 ]
 
